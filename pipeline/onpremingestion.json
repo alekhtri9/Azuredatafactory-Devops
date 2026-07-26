@@ -100,7 +100,10 @@
 				"inputs": [
 					{
 						"referenceName": "onpremsource",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"p_file_name": "bb"
+						}
 					}
 				],
 				"outputs": [
