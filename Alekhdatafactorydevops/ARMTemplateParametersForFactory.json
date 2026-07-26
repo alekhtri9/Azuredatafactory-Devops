@@ -17,6 +17,9 @@
 		"localonpremfiles_properties_typeProperties_userId": {
 			"value": "alekhtri9@outlook.com"
 		},
+		"lsapisource_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
 		"lsdatalake_properties_typeProperties_url": {
 			"value": "https://alekhadfstorage.dfs.core.windows.net/"
 		}

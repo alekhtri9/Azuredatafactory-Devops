@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "alekhtri9@outlook.com"
 		},
+		"lsapisource_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
 		"lsdatalake_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://alekhadfstorage.dfs.core.windows.net/"
@@ -59,6 +63,9 @@
 					},
 					"localonpremfiles_password": {
 						"value": "[parameters('localonpremfiles_password')]"
+					},
+					"lsapisource_properties_typeProperties_url": {
+						"value": "[parameters('lsapisource_properties_typeProperties_url')]"
 					},
 					"lsdatalake_properties_typeProperties_url": {
 						"value": "[parameters('lsdatalake_properties_typeProperties_url')]"
