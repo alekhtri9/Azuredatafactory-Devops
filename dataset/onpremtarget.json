@@ -5,11 +5,20 @@
 			"referenceName": "lsdatalake",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"p_param_files": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_param_files",
+					"type": "Expression"
+				},
 				"folderPath": "onprem",
 				"fileSystem": "bronze"
 			},
