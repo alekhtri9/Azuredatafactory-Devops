@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Alekhdatafactorydevops"
+		},
+		"localonpremfiles_password": {
+			"value": ""
+		},
+		"lsdatalake_accountKey": {
+			"value": ""
+		},
+		"localonpremfiles_properties_typeProperties_host": {
+			"value": "C:\\Alekh-ADFDevopsproj raw files"
+		},
+		"localonpremfiles_properties_typeProperties_userId": {
+			"value": "alekhtri9@outlook.com"
+		},
+		"lsdatalake_properties_typeProperties_url": {
+			"value": "https://alekhadfstorage.dfs.core.windows.net/"
+		}
+	}
+}
