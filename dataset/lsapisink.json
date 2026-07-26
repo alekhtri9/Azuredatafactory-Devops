@@ -1,0 +1,19 @@
+{
+	"name": "lsapisink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsdatalake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "github",
+				"fileSystem": "bronze"
+			}
+		},
+		"schema": {}
+	}
+}
