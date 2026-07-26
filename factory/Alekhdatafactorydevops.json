@@ -1,0 +1,15 @@
+{
+	"name": "Alekhdatafactorydevops",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7ba85906-6648-472c-9901-78d0a8d19df6",
+		"tenantId": "6de51075-ca41-4893-a760-92b0764c3545"
+	}
+}
