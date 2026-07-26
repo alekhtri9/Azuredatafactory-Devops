@@ -1,0 +1,7 @@
+{
+	"name": "alekhselfhosted",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "create"
+	}
+}
