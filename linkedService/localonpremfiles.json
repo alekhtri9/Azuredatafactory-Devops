@@ -1,0 +1,17 @@
+{
+	"name": "localonpremfiles",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Alekh-ADFDevopsproj raw files",
+			"userId": "alekhtri9@outlook.com",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3MDE0MzE3OS05MmQyLTRkYjgtYmRhNS03OWQ3MDI2NDU3MTIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "alekhselfhosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
