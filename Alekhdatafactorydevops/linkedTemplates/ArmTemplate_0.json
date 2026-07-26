@@ -121,12 +121,20 @@
 					"referenceName": "localonpremfiles",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"p_file_name": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "FileServerLocation",
-						"fileName": "DimFlight.csv"
+						"fileName": {
+							"value": "@dataset().p_file_name",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -244,7 +252,9 @@
 							{
 								"referenceName": "onpremsource",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"p_file_name": "bb"
+								}
 							}
 						],
 						"outputs": [
