@@ -39,120 +39,105 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "migrateonpremfiles",
-						"type": "Copy",
+						"name": "foreachfiles",
+						"type": "ForEach",
 						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 2,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "FileServerReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
+							"items": {
+								"value": "@pipeline().parameters.files",
+								"type": "Expression"
 							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
+							"activities": [
+								{
+									"name": "migrateonpremfiles",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
 										"source": {
-											"name": "flight_id",
-											"type": "String",
-											"physicalType": "String"
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "FileServerReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
 										},
 										"sink": {
-											"name": "flight_id",
-											"type": "String",
-											"physicalType": "String"
+											"type": "DelimitedTextSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "DelimitedTextWriteSettings",
+												"quoteAllText": true,
+												"fileExtension": ".txt"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
 										}
 									},
-									{
-										"source": {
-											"name": "flight_number",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "flight_number",
-											"type": "String",
-											"physicalType": "String"
+									"inputs": [
+										{
+											"referenceName": "onpremsource",
+											"type": "DatasetReference",
+											"parameters": {
+												"p_file_name": {
+													"value": "@item().file_name",
+													"type": "Expression"
+												}
+											}
 										}
-									},
-									{
-										"source": {
-											"name": "departure_time",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "departure_time",
-											"type": "String",
-											"physicalType": "String"
+									],
+									"outputs": [
+										{
+											"referenceName": "onpremtarget",
+											"type": "DatasetReference",
+											"parameters": {
+												"p_param_files": {
+													"value": "@item().file_name",
+													"type": "Expression"
+												}
+											}
 										}
-									},
-									{
-										"source": {
-											"name": "arrival_time",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "arrival_time",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
+									]
 								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "onpremsource",
-								"type": "DatasetReference",
-								"parameters": {
-									"p_file_name": "bb"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "onpremtarget",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+							]
+						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"files": {
+						"type": "array",
+						"defaultValue": [
+							{
+								"file_name": "DimFlight.csv"
+							},
+							{
+								"file_name": "DimPassenger.csv"
+							}
+						]
+					}
 				},
 				"annotations": []
 			},
@@ -205,11 +190,20 @@
 					"referenceName": "lsdatalake",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"p_param_files": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().p_param_files",
+							"type": "Expression"
+						},
 						"folderPath": "onprem",
 						"fileSystem": "bronze"
 					},
